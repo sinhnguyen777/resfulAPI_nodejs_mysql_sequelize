@@ -5,8 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+
+const usersRouter = require('./routes/user');
 const productsRouter = require('./routes/products');
 const categorysRouter = require('./routes/category');
 
@@ -24,8 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.options('*', cors());
 
-// app.use('/', indexRouter);
-// app.use('/', usersRouter);
+app.use('/', usersRouter);
 app.use('/', productsRouter);
 app.use('/', categorysRouter);
 
@@ -42,7 +41,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
+  res.status(err.status || 500);  
   res.render('error');
 });
 
