@@ -1,18 +1,30 @@
-var db = require('./database')
-var data = []
-module.exports = class {
-    static fetchAllCategory() {
-        return new Promise((resolve, reject) => {
-            var connection = db
-            var sql = `SELECT * FROM catalog`;
-            connection.query(sql, (err, data) => {
-                data = data
-                // console.log(data);
-                if (err) {
-                    return reject(err)
-                }
-                resolve(data)
-            })
-        })
+const Sequelize = require('sequelize')
+const sequelize = require('../utils/db');
+
+const Category = sequelize.define('catalog', {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    sort: {
+        type: Sequelize.TINYINT,
+        allowNull: false
+    },
+    hot: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    parent: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
-}
+
+}, { freezeTableName: true, timestamps: false })
+
+module.exports = Category

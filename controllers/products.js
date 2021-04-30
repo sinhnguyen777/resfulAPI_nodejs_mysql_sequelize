@@ -21,7 +21,6 @@ exports.getIdProduct = (req, res, next) => {
                 error.status(404)
                 throw error
             }
-            console.log(product);
             res.status(200).json({ message: 'product tim thay', product: product })
         }))
         .catch(err => {
@@ -73,7 +72,6 @@ exports.updateProduct = (req, res, next) => {
     const content = req.body.content
     const view = req.body.view
 
-    console.log(id);
     Product.findByPk(id)
 
         .then(product => {
