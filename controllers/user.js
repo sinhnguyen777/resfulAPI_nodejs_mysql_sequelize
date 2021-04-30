@@ -106,3 +106,29 @@ exports.deleteUser = (req, res, next) => {
         res.status(500).json(error);
     });
 }
+
+// login
+
+exports.checkLogin = (req, res, next) => {
+    const user_name = req.body.user_name
+    const password = req.body.password
+    User.findOne({where: {user_name: user_name}})
+        .then((user) => {
+            if (!user) {
+                res.status(201).json({message: 'user ko ton tai'})
+            }else{
+                if (user.password === password) {
+                    console.log(password);
+                    res.status(201).json({message: 'login successfully', user: user})
+                } else {
+                    res.status(201).json({message: 'login fail ( wrong password )'})
+                }
+            }
+        })
+        .catch(err => {
+            if (!err) {
+                err.status = 500
+            }
+            next(err)
+        })
+}
