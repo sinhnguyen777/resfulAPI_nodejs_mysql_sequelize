@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.options('*', cors());
 
-app.use('/', usersRouter);
+app.use('/user', usersRouter);
 app.use('/', productsRouter);
 app.use('/', categorysRouter);
 

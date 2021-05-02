@@ -3,11 +3,11 @@ const router = express.Router();
 
 const userController = require('../controllers/user')
 
-router.get('/user', userController.getAllUser)
-router.get('/user/:id', userController.getIdUser)
-router.post('/addUser', userController.createUser)
-router.put('/user/:id', userController.updateUser)
-router.delete('/user/:id', userController.deleteUser)
+router.get('/', userController.getAllUser)
+// router.get('/:id', userController.getIdUser)
+router.post('/create', userController.createUser)
+router.post('/update', userController.updateUser)
+router.delete('/delete/:id', userController.deleteUser)
 
 // login and register
 
