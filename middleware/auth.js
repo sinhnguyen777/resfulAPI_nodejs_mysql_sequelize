@@ -15,9 +15,4 @@ exports.authentication = (req, res, next) => {
         console.log('user verify'+ user);
         next()
     })
-
-
-    // .then(decoded => {
-    //     req.user = decoded
-    // })
 }
