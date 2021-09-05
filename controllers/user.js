@@ -164,18 +164,18 @@ exports.checkLogin = (req, res) => {
             return Promise.all([bycript.compare(password, user.password), user])
         })
         .then(isMatch => {
-            
+
             if (!isMatch) {
-                return res.status(400).json({message: 'Sai password'})
+                return res.status(400).json({ message: 'Sai password' })
             }
             const payLoad = {
                 user_name: isMatch.user_name,
                 // typeUser: user.typeUser
             }
-            return jwt.sign(payLoad,'fptHCM', {expiresIn: 3600})
+            return jwt.sign(payLoad, 'fptHCM', { expiresIn: 3600 })
         })
         .then(token => {
-            res.status(200).json({message: 'Login successfully', token})
+            res.status(200).json({ message: 'Login successfully', token })
         })
         .catch(err => {
             return res.status(500).json(err)

@@ -6,9 +6,9 @@ const auth = require('../middleware/auth')
 
 router.get('/', userController.getAllUser)
 router.get('/:id', auth.authentication, userController.getIdUser)
-router.post('/create', userController.createUser)
-router.post('/update', userController.updateUser)
-router.delete('/delete/:id', userController.deleteUser)
+router.post('/post', userController.createUser)
+router.post('/put/:id', userController.updateUser)
+router.delete('/remove/:id', userController.deleteUser)
 
 // login and register
 

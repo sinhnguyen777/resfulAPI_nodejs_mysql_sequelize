@@ -19,11 +19,11 @@ exports.getIdCategory = (req, res, next) => {
     Category.findByPk(id)
         .then(category => {
             if (!category) {
-                const error = new Error ('khong tim thay category')
+                const error = new Error('khong tim thay category')
                 error.status(404)
                 throw error
             }
-            res.status(200).json({message: 'category tim thay', catalog: category})
+            res.status(200).json({ message: 'category tim thay', catalog: category })
         })
         .catch(err => {
             if (!err.status) {
@@ -41,7 +41,7 @@ exports.createCategory = (req, res, next) => {
     const hot = req.body.hot
     const parent = req.body.parent
 
-    const category = new Category({name:name, sort: sort, hot: hot, parent: parent})
+    const category = new Category({ name: name, sort: sort, hot: hot, parent: parent })
     category
         .save()
         .then(result => {
@@ -82,7 +82,7 @@ exports.updateCategory = (req, res, next) => {
             return category.save()
         })
         .then(result => {
-            res.status(200).json({message: 'category update successfullly', category: result})
+            res.status(200).json({ message: 'category update successfullly', category: result })
         })
         .catch(error => {
             if (!error) {
@@ -92,19 +92,21 @@ exports.updateCategory = (req, res, next) => {
         })
 }
 
-exports.deleteCategory = (req, res, next)  => {
+// delete category
+
+exports.deleteCategory = (req, res, next) => {
     const id = req.params.id
     Category.destroy({
-        where: {id}
+        where: { id }
     })
-    .then((deletedRecord) => {
-        if (deletedRecord === 1) {
-            res.status(200).json({message:"Deleted successfully"});
-        }else {
-            res.status(404).json({message:"record delete error"})
-        }
-    })
-    .catch(err => {
-        res.status(500).json(err);
-    })
+        .then((deletedRecord) => {
+            if (deletedRecord === 1) {
+                res.status(200).json({ message: "Deleted successfully" });
+            } else {
+                res.status(404).json({ message: "record delete error" })
+            }
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        })
 }

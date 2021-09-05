@@ -42,7 +42,7 @@ exports.createProduct = (req, res, next) => {
     const content = req.body.content
     const view = req.body.view
 
-    const products = new Product({name: name, img: img, price: price, price_sale: price_sale, id_catalog: id_catalog, hot: hot, content: content, view: view})
+    const products = new Product({ name: name, img: img, price: price, price_sale: price_sale, id_catalog: id_catalog, hot: hot, content: content, view: view })
     products
         .save()
         .then(result => {
@@ -92,7 +92,7 @@ exports.updateProduct = (req, res, next) => {
             return product.save()
         })
         .then(result => {
-            res.status(200).json({message: 'product update successfully', product: result})
+            res.status(200).json({ message: 'product update successfully', product: result })
         })
         .catch(err => {
             if (!err.status) {
@@ -107,16 +107,16 @@ exports.updateProduct = (req, res, next) => {
 exports.deleteProduct = (req, res) => {
     const id = req.params.id
     Product.destroy({
-        where: {id}
+        where: { id }
     })
-    .then((deletedRecord) => {
-        if (deletedRecord === 1) {
-            res.status(200).json({message:"Deleted successfully"});
-        }else{
-            res.status(404).json({message:"record delete error"})
-        }
-    })
-    .catch((error) => {
-        res.status(500).json(error);
-    });
+        .then((deletedRecord) => {
+            if (deletedRecord === 1) {
+                res.status(200).json({ message: "Deleted successfully" });
+            } else {
+                res.status(404).json({ message: "record delete error" })
+            }
+        })
+        .catch((error) => {
+            res.status(500).json(error);
+        });
 }

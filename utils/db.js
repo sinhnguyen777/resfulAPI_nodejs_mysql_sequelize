@@ -5,7 +5,7 @@ const sequelize = new Sequelize('book_store', 'root', '', {
     host: 'localhost',
     username: 'root',
     password: ''
-})  
+})
 
 sequelize.authenticate()
     .then(() => {
