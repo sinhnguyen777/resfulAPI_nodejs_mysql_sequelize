@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --inspect ./bin/www",
+    "start": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -18,9 +18,8 @@
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
+    "nodemon": "^2.0.12",
     "sequelize": "^6.6.2"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+  "devDependencies": {}
 }
