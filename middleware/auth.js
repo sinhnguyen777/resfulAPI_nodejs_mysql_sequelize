@@ -3,9 +3,6 @@ const jwt = require('jsonwebtoken')
 
 exports.authentication = (req, res, next) => {
 
-
-
-    // dkhfhabsj,jmaskn
     const token = req.header('token')
     console.log(token);
     if (!token) {
